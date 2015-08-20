@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DiabetesApp.ViewModels.A1CViewModel
+
+<div class="container">
+    <h3>Input A1C Percentage</h3>
+        @using (Html.BeginForm("A1C", "Input", new { @class = "form-horizontal", @role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <p>@Html.ValidationSummary(true)</p>
+
+            <fieldset>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="editor-label control-label col-md-2 text-right">@Html.LabelFor(model => model.inputDate)</label>
+                        <div class="editor-field col-sm-10">
+                            @Html.TextBoxFor(model => model.inputDate, new { @Value = DateTime.Now, @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.inputDate)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <span class="editor-label control-label col-sm-2 text-right"> @Html.LabelFor(model => model.a1cAmount) </span>
+                        <div class="editor-field col-sm-10">
+                            @Html.TextBoxFor(model => model.a1cAmount, new { @class = "form-control", @placeholder = "Enter A1C percentage" })
+                            @Html.ValidationMessageFor(model => model.a1cAmount)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    
+</div>

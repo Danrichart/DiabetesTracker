@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model DiabetesApp.ViewModels.BloodSugarViewModel
+<div class="container">
+    <h3>Input Blood Sugar Levels</h3>
+    
+   @using (Html.BeginForm("BloodSugar", "Input", new { @class = "form-horizontal", @role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="editor-label control-label col-md-2 text-right">@Html.LabelFor(model => model.inputDate)</label>
+                        <div class="editor-field col-sm-10">
+                            @Html.TextBoxFor(model => model.inputDate, new { @Value = DateTime.Now, @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.inputDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <span class="editor-label control-label col-sm-2 text-right"> @Html.LabelFor(model => model.bloodSugarAmount) </span>
+                        <div class="editor-field col-sm-10">
+                            @Html.TextBoxFor(model => model.bloodSugarAmount, new { @class = "form-control", @placeholder = "Enter Blood Sugar in mg/dl" })
+                            @Html.ValidationMessageFor(model => model.bloodSugarAmount)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+   
+
+</div>
+
+

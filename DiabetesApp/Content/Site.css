@@ -1,0 +1,73 @@
+﻿body {
+    font-family: "HelveticaNeue-Light", "Helvetic Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-align: left;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+
+
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {  
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/*.btn-default:hover,
+.btn-default:focus {
+    border-color: grey;
+    background-color: white;
+
+} */
+.btn-default.active {
+  color: #333333;
+  background-color: grey;
+  border-color: grey;
+}
+
+
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#chart {
+    margin-top: 50px;
+}
+

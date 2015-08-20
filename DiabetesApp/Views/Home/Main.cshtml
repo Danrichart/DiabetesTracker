@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Welcome, @System.Web.HttpContext.Current.User.Identity.Name</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <a href="/Graphs/Index"><span style="font-size:10em;"  class="glyphicon glyphicon-signal"></span></a><h3>Graphs</h3>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="/Input/Index"><span style="font-size:10em;" class="glyphicon glyphicon-plus"></span></a><h3>Input</h3>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="/Home/History"><span style="font-size:10em;" class="glyphicon glyphicon-folder-open"></span></a><h3>History</h3>
+        </div>
+    </div>
+</div>
+
+

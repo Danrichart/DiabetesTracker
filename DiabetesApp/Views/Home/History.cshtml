@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<DiabetesApp.Models.InputModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="container">
+<h2>History</h2>
+    
+<p>
+    @Html.ActionLink("New Input", "Index", "Input")
+</p>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Entry Date
+        </th>
+        <th>
+            Blood Sugar
+        </th>
+        <th>
+            Weight
+        </th>
+        <th>
+           Carbohydrates
+        </th>
+        <th>
+            A1C
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.inputDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bloodSugarAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weightAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carbAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.a1cAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("History", new { page }))
+</div>

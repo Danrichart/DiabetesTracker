@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Graphs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2>Graphs</h2>
+    <div class="row" id="graph-buttons">
+        <div class="col-md-3">
+            <button class="btn btn-default" id="bloodSugar" value="false">Blood Sugar</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-default" id="weight" value="false">Weight</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-default" id="a1C" value="false">A1C</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-default" id="carbs" value="false">Carbohydrates</button>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div id="chart"></div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="~/Scripts/highchartsScript.js"></script>
+}
+
+
