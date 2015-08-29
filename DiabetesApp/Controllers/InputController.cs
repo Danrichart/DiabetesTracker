@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using DiabetesApp.ViewModels;
 using DiabetesApp.Models;
-using System.Data.Entity;
 
 namespace DiabetesApp.Controllers
 {
@@ -13,7 +8,7 @@ namespace DiabetesApp.Controllers
     public class InputController : Controller
     {
 
-        private InputModelDBContext db = new InputModelDBContext();
+        private AppServices service = new AppServices();
         //
         // GET: /Input/
         public ActionResult Index()
@@ -33,16 +28,7 @@ namespace DiabetesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var inputModel = new InputModel
-                {
-                    user = System.Web.HttpContext.Current.User.Identity.Name,
-                    bloodSugarAmount = model.bloodSugarAmount,
-                    inputDate = model.inputDate
-                };
-
-                db.Entry(inputModel).State = EntityState.Added;
-                db.SaveChanges();
-
+                service.InputBloodSugarData(model);
                 return RedirectToAction("Index", "Input");
             }
             return View(model);
@@ -62,16 +48,8 @@ namespace DiabetesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var inputModel = new InputModel
-                {
-                    user = System.Web.HttpContext.Current.User.Identity.Name,
-                    weightAmount = model.weightAmount,
-                    inputDate = model.inputDate
-                };
 
-                db.Entry(inputModel).State = EntityState.Added;
-                db.SaveChanges();
-
+                service.InputWeightData(model);
                 return RedirectToAction("Index", "Input");
             }
             return View(model);
@@ -89,22 +67,11 @@ namespace DiabetesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var inputModel = new InputModel
-                {
-                    user = System.Web.HttpContext.Current.User.Identity.Name,
-                    a1cAmount = model.a1cAmount,
-                    inputDate = model.inputDate
-                };
-
-                db.Entry(inputModel).State = EntityState.Added;
-                db.SaveChanges();
-
-                return RedirectToAction("Index", "Input");
+                service.InputA1CData(model);
+                return RedirectToAction("Index", "Input"); 
             }
             return View(model);
         }
-
-
 
 
         //GET: /Input/Carbs
@@ -119,16 +86,7 @@ namespace DiabetesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var inputModel = new InputModel
-                {
-                    user = System.Web.HttpContext.Current.User.Identity.Name,
-                    carbAmount = model.carbAmount,
-                    inputDate = model.inputDate
-                };
-
-                db.Entry(inputModel).State = EntityState.Added;
-                db.SaveChanges();
-
+                service.InputCarbohydrateData(model);
                 return RedirectToAction("Index", "Input");
             }
             return View(model);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
+﻿using System.Web.Mvc;
 using DiabetesApp.Models;
 
 namespace DiabetesApp.Controllers
@@ -11,7 +6,7 @@ namespace DiabetesApp.Controllers
     [Authorize]
     public class GraphsController : Controller
     {
-        private InputModelDBContext db = new InputModelDBContext();
+        private AppServices service = new AppServices();
         
         //
         // GET: /Graphs/
@@ -22,31 +17,25 @@ namespace DiabetesApp.Controllers
 
         public JsonResult DisplayBloodSugar()
         {
-            var model = db.InputModels.Where(x => x.bloodSugarAmount != null && x.user == System.Web.HttpContext.Current.User.Identity.Name).Select(x => new { x.inputDate, x.bloodSugarAmount }).OrderBy(x => x.inputDate);
+            var model = service.GetBloodSugarData();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DisplayWeight()
         {
-            var model = db.InputModels.Where(x => x.weightAmount != null && x.user == System.Web.HttpContext.Current.User.Identity.Name).Select(x => new { x.inputDate, x.weightAmount }).OrderBy(x => x.inputDate);
+            var model = service.GetWeightData();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         public JsonResult DisplayA1C()
         {
-            var endDate = DateTime.Now;
-            var startDate = DateTime.Now.AddYears(-1);
 
-            var model = db.InputModels.Where(x => x.a1cAmount != null && x.user == System.Web.HttpContext.Current.User.Identity.Name).Select(x => new { x.inputDate, x.a1cAmount }).OrderBy(x => x.inputDate);
+            var model = service.GetA1CData();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         public JsonResult DisplayCarbs()
         {
-            var model = db.InputModels.Where(x => x.carbAmount != null && x.user == System.Web.HttpContext.Current.User.Identity.Name).Select(x => new { x.inputDate, x.carbAmount }).OrderBy(x => x.inputDate);
+            var model = service.GetCarbohydrateData();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-
-        
-
-        
 	}
 }

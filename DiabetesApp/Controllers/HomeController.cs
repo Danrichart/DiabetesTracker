@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using DiabetesApp.Models;
-using System.Data.Entity;
-using PagedList;
 
 
 namespace DiabetesApp.Controllers
@@ -14,7 +8,7 @@ namespace DiabetesApp.Controllers
     public class HomeController : Controller
     {
 
-        private InputModelDBContext db = new InputModelDBContext();
+        private AppServices service = new AppServices();
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -29,33 +23,22 @@ namespace DiabetesApp.Controllers
 
         public ActionResult History(int? page)
         {
-            var models = db.InputModels
-            .Where(x => x.user == System.Web.HttpContext.Current.User.Identity.Name)
-            .OrderByDescending(x => x.inputDate);
-
-            int pageSize = 15;
-            int pageNumber = (page ?? 1);
-
-            return View(models.ToPagedList(pageNumber, pageSize));
+            var model = service.GetHistorytoPagedList(page);
+            return View(model);
         }
 
+        
         public ActionResult Delete(int? id)
         {
-            var model = db.InputModels.Find(id);
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            var model = service.SelectModelID(id);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var model = db.InputModels.Find(id);
-            db.InputModels.Remove(model);
-            db.SaveChanges();
-
+            var model = service.SelectModelID(id);
+            service.DeleteModel(model);
             return RedirectToAction("History");
         }
     }

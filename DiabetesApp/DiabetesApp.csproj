@@ -184,6 +184,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppServices.cs" />
+    <Compile Include="Models\IAppService.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
