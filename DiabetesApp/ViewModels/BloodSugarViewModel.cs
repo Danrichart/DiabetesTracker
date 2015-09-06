@@ -13,6 +13,6 @@ namespace DiabetesApp.ViewModels
         [Required(ErrorMessage = "Blood sugar entry is required")]
         [Display(Name="Blood Sugar")]
         [Range(1, 999, ErrorMessage="Entry not in acceptable range")]
-        public int? bloodSugarAmount { get; set; }
+        public int bloodSugarAmount { get; set; }
     }
 }

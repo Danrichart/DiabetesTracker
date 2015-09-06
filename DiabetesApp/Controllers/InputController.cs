@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using DiabetesApp.ViewModels;
 using DiabetesApp.Models;
+using DiabetesApp.DataAbstraction;
 
 namespace DiabetesApp.Controllers
 {
@@ -8,7 +9,7 @@ namespace DiabetesApp.Controllers
     public class InputController : Controller
     {
 
-        private AppServices service = new AppServices();
+        private Service service = new Service();
         //
         // GET: /Input/
         public ActionResult Index()
@@ -33,8 +34,6 @@ namespace DiabetesApp.Controllers
             }
             return View(model);
         }
-
-
 
         //GET: /Input/Weight
         public ActionResult Weight()
@@ -86,7 +85,7 @@ namespace DiabetesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.InputCarbohydrateData(model);
+                service.InputCarbohydratesData(model);
                 return RedirectToAction("Index", "Input");
             }
             return View(model);

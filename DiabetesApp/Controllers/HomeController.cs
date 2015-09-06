@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using DiabetesApp.Models;
+using DiabetesApp.DataAbstraction;
 
 
 namespace DiabetesApp.Controllers
@@ -8,7 +9,7 @@ namespace DiabetesApp.Controllers
     public class HomeController : Controller
     {
 
-        private AppServices service = new AppServices();
+        private Service service = new Service();
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -23,21 +24,21 @@ namespace DiabetesApp.Controllers
 
         public ActionResult History(int? page)
         {
-            var model = service.GetHistorytoPagedList(page);
+            var model = service.HistoryToPagedList(page);
             return View(model);
         }
 
         
         public ActionResult Delete(int? id)
         {
-            var model = service.SelectModelID(id);
+            var model = service.SelectModel(id);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var model = service.SelectModelID(id);
+            var model = service.SelectModel(id);
             service.DeleteModel(model);
             return RedirectToAction("History");
         }
